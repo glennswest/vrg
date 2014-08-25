@@ -3,8 +3,6 @@ include <MCAD/materials.scad>
 include <MCAD/stepper.scad>
 include <MCAD/motors.scad>
 use <MCAD/shapes.scad>;
-use <smallbridges/scad/bom.scad>;
-use <smallbridges/scad/vslot.scad>;
 $fn = 32;
 
 

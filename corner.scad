@@ -1,8 +1,8 @@
 include <MCAD/units.scad>;
 include <MCAD/materials.scad>
 use <MCAD/shapes.scad>;
-use <smallbridges/scad/bom.scad>;
-use <smallbridges/scad/vslot.scad>;
+use <bom.scad>;
+use <vslot.scad>;
 use <nemamount.scad>;
 
 $fn = 32;
@@ -34,9 +34,9 @@ module motors()
 module show_rods()
 {  // Vertical Rod
    %translate([45,45,-1 *  rod_length]) rotate([0,0,0]) vslot20x20(rod_length);
-   %translate([15,-1,35]) rotate([0,90,90]) vslot20x20(rod_length);
-   %translate([-1,15,15]) rotate([0,90,0]) vslot20x20(rod_length);
-
+   %translate([25,-1,35]) rotate([0,90,90]) vslot20x20(rod_length);
+   %translate([-1,25,15]) rotate([0,90,0]) vslot20x20(rod_length);
+   
 }
 module vslot_cutouts(){
 
