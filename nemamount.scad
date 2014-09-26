@@ -6,6 +6,29 @@ use <MCAD/shapes.scad>;
 $fn = 32;
 
 
+
+
+module motor_support(ht)
+{
+	translate([-20,-19,0]) motor_support_body(ht);
+
+}
+
+
+module motor_support_body(ht)
+{
+     difference(){
+         translate([-2,-6,0]) cube([45,48.5,ht]);
+         translate([20,20,-.1]) cylinder(r=15,h=ht+.2);
+         translate([35,35,-.1]) cylinder(r=4,h=ht+.2);
+         translate([35,4.8,-.1]) cylinder(r=4,h=ht+.2);
+         translate([5,35,-.1]) cylinder(r=4,h=ht+.2);
+         translate([5, 5,-.1]) cylinder(r=4,h=ht+.2);
+         }
+
+}
+
+
 module nema_geared_cutout()
 {
     //pulley opening
@@ -24,8 +47,7 @@ module nema_geared_cutout()
     //gearhead indentation
     translate([16,-5,21]) rotate([90,0,0]) cylinder (h=3.35, r=11.25);
 
-    //pulley hub indentation
-    //translate([16,20-2,21]) rotate([90,0,0]) cylinder (h=5.6, r=7);
+  
     
 }
 
@@ -45,7 +67,24 @@ module nema_motor()
 {
    union(){
      nema_mount();
-     %translate([0,-4,1]) rotate([90,0,0]) motor(Nema17, NemaLong, dualAxis=false);
+     %translate([0,-4,1]) rotate([90,0,0]) motor(Nema17, size=NemaLong , dualAxis=false);
+     }
+}
+
+module nema_motor_inverse()
+{
+   union(){
+     nema_mount_inverse();
+     %translate([0,-4,1]) rotate([90,0,0]) motor(Nema17, size=NemaLong , dualAxis=false);
+     }
+}
+
+module nema_geared_motor_inverse()
+{
+   union(){
+     nema_geared_inverse();
+     %translate([16,-7,22]) rotate([90,0,180]) motor(Nema17, NemaLong, dualAxis=false);
+    
      }
 }
 
@@ -61,21 +100,57 @@ module nema_geared_motor()
 module nema_geared_mount()
 {
    difference(){
-      translate([-6,-6,0]) rotate([90,0,0]) cube([45,45,5]);
+      union(){
+           translate([-6,-6,0]) rotate([90,0,0]) cube([45,45,7]);
+           translate([-6,-13,-4]) rotate([0,0,0]) cube([45,25,5]);
+           translate([-6,-13,44]) rotate([0,0,0]) cube([45,25,5]);
+           }
       translate([0,0,1]) nema_geared_cutout();
       }
 
 
 }
 
-module nema_mount()
+module nema_geared_inverse()
 {
    difference(){
-      translate([-22.5,0,-21.5]) rotate([90,0,0]) cube([45,45,5]);
+      union(){
+           translate([-6,-6,0]) rotate([90,0,0]) cube([45,45,7]);
+           translate([-6,-31,-4]) rotate([0,0,0]) cube([45,25,5]);
+           translate([-6,-31,44]) rotate([0,0,0]) cube([45,25,5]);
+           }
+      translate([0,0,1]) nema_geared_cutout();
+      }
+
+
+}
+
+module nema_mount_inverse()
+{
+   difference(){
+      union(){
+        translate([-22.5,0,-21.5]) rotate([90,0,0]) cube([45,45,5]);
+        translate([-22.5,-5,-25]) rotate([0,0,0]) cube([45,25,5]);
+        }
       translate([0,0,1]) nema_cutout();
       }
    //nema_cutout();
 }
 
-//nema_motor();
-nema_geared_motor();
+module nema_mount()
+{
+   difference(){
+      union(){
+        translate([-22.5,0,-21.5]) rotate([90,0,0]) cube([45,45,5]);
+        translate([-22.5,-25,-25]) rotate([0,0,0]) cube([45,25,5]);
+        }
+      translate([0,0,1]) nema_cutout();
+      }
+   //nema_cutout();
+}
+
+//nema_motor_inverse();
+translate([0,0,40]) rotate([270,0,0]) nema_motor();
+translate([0,0,0]) motor_support(40);
+//nema_geared_motor();
+//nema_geared_motor_inverse();

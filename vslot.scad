@@ -14,14 +14,17 @@ module vslot(length=50, sections=1, finish, cutout=0) {
 	cutcorner = [[8.20,8.20],[6.57,8.20],[6.57,7.66],[7.66,6.57],[8.20,6.57]];
 
 	module profile() {
+        
 		difference() {
+         
 			translate([0,0,length/2])
 			roundedBox(20 * sections, 20, length, 1.5);
+         if (cutout == 0){
 			for(i = [0,180]) rotate([0,0,-i]) translate([10 * (sections - 1), 0, -epsilon/2]) {
 				linear_extrude(length+20) polygon(cutext);
 				translate([5,-2.89,-20]) cube([10,5.78,length+40]);
 			}
-                     if (cutout == 0){
+          
 			for(i = [90,270]) rotate([0,0,-i])
 				for(j = [0:sections-1]) translate([0, (sections - 1) * 10 - 20 * j, -epsilon/2]) {
 					linear_extrude(length+epsilon) polygon(cutext);
@@ -45,10 +48,14 @@ module vslot(length=50, sections=1, finish, cutout=0) {
 		}
 	}
 
-	if(finish)
-		color(finish) profile();
-	else
-		color(vslot_color) profile();
+      if (cutout == 1){
+		 translate([0,0,length/2]) box(20 * sections, 20.2, length);
+          } else {
+	     if(finish)
+		   color(finish) profile();
+	     else
+		   color(vslot_color) profile();
+         }
 }
 
 module vslot20x20(length, finish) { vslot(length, 1, finish); }
@@ -78,8 +85,10 @@ module vslot_test() {
 
 	translate([0, 120, 0])
 	vslot20x80(100, vslot_color_black);
+
+    translate([0,140,0]) vslot20x20_cutout(100);
 }
 
-
+vslot_test();
 
 

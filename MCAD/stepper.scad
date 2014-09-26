@@ -124,7 +124,7 @@ Nema17 = [
                 [NemaModel, 17],
                 [NemaLengthShort, 33*mm],
                 [NemaLengthMedium, 39*mm],
-                [NemaLengthLong, 47*mm],
+                [NemaLengthLong, 60*mm],
                 [NemaSideSize, 42.20*mm], 
                 [NemaDistanceBetweenMountingHoles, 31.04*mm], 
                 [NemaMountingHoleDiameter, 4*mm], 
