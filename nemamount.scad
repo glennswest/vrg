@@ -10,23 +10,31 @@ $fn = 32;
 
 module motor_support(ht)
 {
-	translate([-20,-19,0]) motor_support_body(ht);
-
+   difference(){
+	  translate([-22.5,23.5,0]) rotate([90,0,0]) motor_support_body(ht);
+      translate([0,1,0]) rotate([90,0,0]) motor_support_cuts(ht);
+      }
 }
-
 
 module motor_support_body(ht)
 {
-     difference(){
-         translate([-2,-6,0]) cube([45,48.5,ht]);
-         translate([20,20,-.1]) cylinder(r=15,h=ht+.2);
-         translate([35,35,-.1]) cylinder(r=4,h=ht+.2);
-         translate([35,4.8,-.1]) cylinder(r=4,h=ht+.2);
-         translate([5,35,-.1]) cylinder(r=4,h=ht+.2);
-         translate([5, 5,-.1]) cylinder(r=4,h=ht+.2);
-         }
+	cube([45,ht,48.5]);
 
 }
+
+
+module motor_support_cuts(ht)
+{
+// Motor shaft/pulley cutout.
+      translate([0,.1,0]) rotate([90, 0, 0]) cylinder(r=12, h=ht*2, center=true, $fn=60);
+      // NEMA 17 stepper motor mounting screws.
+      for (x = [-1, 1]) for (z = [-1, 1]) {
+        scale([x, 1, z]) translate([15.5, .1, 15.5]) {
+          rotate([90, 0, 0]) cylinder(r=4, h=ht*2, center=true, $fn=12);
+          }
+        }
+}
+
 
 
 module nema_geared_cutout()

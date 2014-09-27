@@ -64,9 +64,9 @@ module motors()
          translate([25,-22.5]) rotate([0,0,90]) motor_support(48);
          translate([30,-15,-.1]) cube([20,12,15]);
          }
-     // translate([-22,25,26]) rotate([0,0,0]) cylinder(r=5,h=60);
-      translate([-22,25,26]) rotate([270,0,0]) nema_motor();
-      translate([-22,25,26]) rotate([180,0,180]) motor_support(26);
+    
+      translate([-22,20,26]) rotate([270,0,0]) nema_motor();
+      translate([-22,20,26]) rotate([180,0,180]) motor_support(26);
 	  
        
       translate([6,-17,0]) sensor_mount();
@@ -78,11 +78,12 @@ module motors()
 
 module show_rods()
 {  // Vertical Rod
-   %translate([45,45,(-1 *  rod_length)+80]) rotate([0,0,0]) vslot20x20(rod_length);
+   %translate([45,45,(-1 *  rod_length)+95]) rotate([0,0,0]) vslot20x20(rod_length);
    %translate([25,-1,35]) rotate([0,90,90]) vslot20x20(rod_length);
-   %translate([-1,25,15]) rotate([0,90,0]) vslot20x20(rod_length);
-   %translate([50,25,0]) boltHole(5, length=12);
-   %translate([10,25,0]) boltHole(5, length=12);
+   %translate([-1,20,15]) rotate([0,90,0]) vslot20x20(rod_length);
+ 
+   %translate([50,20,0]) boltHole(5, length=12);
+   %translate([10,20,0]) boltHole(5, length=12);
 
    %translate([60,45,15]) rotate([90,0,270]) boltHole(5, length=18);
    %translate([60,45,55]) rotate([90,0,270]) boltHole(5, length=18);
@@ -98,13 +99,13 @@ module show_rods()
 module vslot_cutouts(){
 
    
-   translate([45,45,-30]) rotate([0,0,0]) vslot20x20_cutout(110);
+   translate([45,45,-13]) rotate([0,0,0]) vslot20x20_cutout(110);
    
    translate([25,-30,35]) rotate([0,90,90]) vslot20x20_cutout(110);
-   translate([-25,25,15]) rotate([0,90,0]) vslot20x20_cutout(110);
+   translate([-25,20,15]) rotate([0,90,0]) vslot20x20_cutout(110);
 
-   translate([50,25,0]) boltHole(5, length=12);
-   translate([10,25,0]) boltHole(5, length=12);
+   translate([50,20,0]) boltHole(5, length=12);
+   translate([10,20,0]) boltHole(5, length=12);
 
    translate([60,45,15]) rotate([90,0,270]) boltHole(5, length=12);
    translate([60,45,55]) rotate([90,0,270]) boltHole(5, length=12);
