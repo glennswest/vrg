@@ -3,10 +3,9 @@ use <nemamount.scad>;
 use <pulley.scad>;
 use <MCAD/nuts_and_bolts.scad>;
 
-module pxmotor_body()
+module bxmotor_body()
 {
 	translate([0,0,0]) rotate([0,180,0]) mountblock();
-	translate([-31,20.6,22]) rotate([90,90,0]) pulley();
     translate([0,0,-20]) cube([25,40,20]);
     %translate([20,20,-10]) rotate([0,90,0]) cylinder(r=6,h=45.2);
     translate([0,40,0]) rotate([0,180,0])cube([50,10,20]);
@@ -18,7 +17,7 @@ module pxmotor_body()
     
 }
 
-module pxmotor_cuts()
+module bxmotor_cuts()
 {
      translate([0,20,-10.1]) rotate([0,90,0]) cylinder(r=6,h=26.2);
      translate([0,20,-10.1]) rotate([0,90,0]) cylinder(r=6,h=26.2);
@@ -30,13 +29,13 @@ module pxmotor_cuts()
      
 }
 
-module pxmotor()
+module bxmotor()
 {
 	difference(){
-       pxmotor_body();
-       pxmotor_cuts();
+       bxmotor_body();
+       bxmotor_cuts();
        }
 
 }
 
-pxmotor();
+bxmotor();

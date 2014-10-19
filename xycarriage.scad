@@ -1,3 +1,5 @@
+use <MCAD/nuts_and_bolts.scad>;
+
 // Cerberus Pup-style carriage for Kossel, compatible with Kossel Mini/Pro linear rails
 
 // Steve Graber made the original design.
@@ -92,7 +94,7 @@ m5_screw_head_gap = 0.5;
 
 bridge_thickness = 0.6;  // To avoid ugly overhangs, use bridges.
 
-do_ball_mount = 0;
+do_ball_mount = 1;
 
 delta = 0.02;  // Small value to avoid visual artifacts for coincident surfaces.
 
@@ -129,6 +131,7 @@ module cut()
       cylinder(r=m3_nut_r, h=m3_nut_thickness+delta+m3_nut_thickness_extra_tensioner, $fn=6, center=true);
     }
   }
+  
   // Cut to outer edge of part, along x
   translate([main_cube_width/4+rest_cut, -main_cube_length/4, 0]) {
     cube([rest_cut, cut_width, main_height + 2], center = true);
@@ -137,7 +140,35 @@ module cut()
 
 module main_carriage()
 {
+    translate([-45.6,-15,0]) rotate([0,0,-90]) rod_mount();
+    translate([-24,12,0]) belt_mount(); 
 	carriage_body();
+        
+}
+
+module belt_mount()
+{
+    difference(){
+       cylinder(r=9,h=12); 
+       translate([-.1,-7.1,-.1]) cube([15,15,15]);
+       translate([-4,0,9.8]) nutHole(3);
+       translate([-4,0,0]) boltHole(3,length=20);
+       }
+
+}
+
+module rod_mount()
+{
+    //37 spacing between mount screws
+    difference(){
+	  cube([30,70,7]);
+      translate([15,25,0]) cylinder(r=5,h=12);
+      translate([15,25-18.5,0]) cylinder(r=2.5,h=12);
+      translate([15,25+18.5,0]) cylinder(r=2.5,h=12);
+      translate([15,25-18.5,0]) nutHole(5);
+      translate([15,25+18.5,0]) nutHole(5);
+      }
+
 }
 
 module carriage_body()
@@ -162,6 +193,7 @@ module carriage_body()
         // Section to give 3rd hole some beef
         translate([-main_cube_width/4-delta, -delta, -main_height/2])
           cube([4+delta, 17+delta, main_height]);
+      
       }
 
       // Holes for rollers
@@ -170,27 +202,18 @@ module carriage_body()
         for (i=[-1, 1]) {
           translate([-roller_x_offset, roller_y_offset_each * i, 0]) {
             cylinder(r=m5_screw_r, h=100, $fn=smooth, center = true);
-            translate([0, 0, main_height/2-m5_screw_head_len-m5_screw_head_gap])
-            cylinder(r=m5_screw_head_r, h=100, $fn=smooth);
+            translate([0, 0, main_height/2-m5_screw_head_len-m5_screw_head_gap+1])
+             nutHole(5);
           }
         }
         // On side w/1 roller
         translate([roller_x_offset, 0, 0]) {
           cylinder(r=m5_screw_r, h=100, $fn=smooth, center = true);
-          translate([0, 0, main_height/2-m5_screw_head_len-m5_screw_head_gap])
-            cylinder(r=m5_screw_head_r, h=100, $fn=smooth);
+          translate([0, 0, main_height/2-m5_screw_head_len-m5_screw_head_gap+1])
+            nutHole(5); //cylinder(r=m5_screw_head_r, h=100, $fn=smooth);
         }
 
-        // Belt Top
-        translate([roller_x_offset-10, roller_y_offset+24, 0]) {
-          translate([0, 0, main_height-30])
-               cylinder(r=m3_screw_head_r, h=16, $fn=smooth);
-          cylinder(r=m3_screw_r, h=100, $fn=smooth, center = true);
-          translate([0, 0, main_height/2-m3_screw_head_len-m3_screw_head_gap])
-             cylinder(r=m3_screw_head_r, h=100, $fn=smooth);
-           
-              
-          }
+        
       }
 
       // Cut, plus corresponding screw and nut trap.
@@ -201,18 +224,7 @@ module carriage_body()
     }
   }
   
- 
+  
 }
 
-module cross_carriage()
-{
-	union(){
-          main_carriage();
-          translate([7,-40,12]) rotate([0,180,90]) main_carriage();
-          }
-
-
-}
-
-
-cross_carriage();
+main_carriage();

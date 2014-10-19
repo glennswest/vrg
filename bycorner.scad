@@ -3,10 +3,9 @@ use <mountblock.scad>;
 use <pulley.scad>;
 use <MCAD/nuts_and_bolts.scad>;
 
-module pymotor_body()
+module bymotor_body()
 {
     translate([0,0,0]) rotate([0,180,0]) mountblock();
-	translate([-31,20.6,22]) rotate([90,90,0]) pulley();
     translate([0,0,-20]) cube([25,40,20]);
     translate([-70,0,-20]) cube([31,40,20]);
     %translate([0,20,-10.1]) rotate([0,90,0]) cylinder(r=6,h=26.2);
@@ -17,7 +16,7 @@ module pymotor_body()
     
 }
 
-module pymotor_cuts()
+module bymotor_cuts()
 {
     translate([-46,11,-10]) rotate([90,0,0]) nutHole(5);
     translate([-61,11,-10]) rotate([90,0,0]) nutHole(5);
@@ -29,15 +28,15 @@ module pymotor_cuts()
      translate([-38,25,-5.1]) rotate([0,90,180]) cube([10,15,35]); 
 }
 
-module pymotor()
+module bymotor()
 {
    difference(){
-       pymotor_body();
-       pymotor_cuts();
+       bymotor_body();
+       bymotor_cuts();
        }
 
 
 }
 
 
-pymotor();
+bymotor();
