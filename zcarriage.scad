@@ -138,9 +138,14 @@ module cut()
   }
 }
 
-module main_carriage()
+module zcarriage()
 {
-    translate([-45.6,-15,0]) rotate([0,-90,-90]) shelf_mount();
+    difference(){
+       rotate([-90,0,0]) translate([-24.6,-52,-24]) cube([49,50,7]);
+       rotate([-90,90+45,0]) translate([-50,-16,-24.1])  cube([30,70,7.2]);
+       translate([18,-25,44]) cube(10,10,10);
+       }
+    rotate([-90,90+45,0]) translate([-50,-16,-24])  shelf_mount();
     translate([-24,12,0]) belt_mount(); 
 	carriage_body();
         
@@ -162,11 +167,13 @@ module shelf_mount()
     //37 spacing between mount screws
     difference(){
 	  cube([30,70,7]);
-      translate([15,25,0]) cylinder(r=5,h=12);
-      translate([15,25-18.5,0]) cylinder(r=2.5,h=12);
-      translate([15,25+18.5,0]) cylinder(r=2.5,h=12);
-      translate([15,25-18.5,0]) nutHole(5);
-      translate([15,25+18.5,0]) nutHole(5);
+      //translate([15,25,0]) cylinder(r=5,h=12);
+      translate([15,70-15,0]) cylinder(r=2.5,h=12);
+      translate([15,70-15,0]) nutHole(5);
+      translate([15,70-35,0]) cylinder(r=2.5,h=12);
+      translate([15,70-35,0]) nutHole(5);
+      translate([15,70-55,0]) cylinder(r=2.5,h=12);
+      translate([15,70-55,0]) nutHole(5);
       }
 
 }
@@ -227,4 +234,4 @@ module carriage_body()
   
 }
 
-main_carriage();
+zcarriage();
