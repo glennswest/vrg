@@ -29,6 +29,7 @@ module pulley_cuts()
 {
     translate([10,-2,9]) rotate([90,0,180]) boltHole(3,length=28);
     translate([10,25,9]) rotate([90,0,180]) nutHole(3);  
+    translate([10,27,9]) rotate([90,0,180]) nutHole(3); 
 }
 
 module pulley()

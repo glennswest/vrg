@@ -15,6 +15,35 @@ $fn = 32;
 
 rod_length = 500;
 
+module xbracket_body()
+{
+	translate([0,0,-20]) cube([20,50,40]);
+	translate([0,-20,-20]) cube([50,20,20]);
+	// Z Screws
+	%translate([3,10,10]) rotate([0,90,0])boltHole(5, length=35);
+	%translate([3,10,-10]) rotate([0,90,0])boltHole(5, length=35);
+	// Y Screws
+	%translate([10,40,-17]) rotate([0,0,0])boltHole(5, length=55);
+	%translate([10,20,-17]) rotate([0,0,0])boltHole(5, length=55);
+}
+
+module xbracket_cuts()
+{       // Z Screws
+	translate([3,10,10]) rotate([0,90,0])boltHole(5, length=35);
+	translate([3,10,-10]) rotate([0,90,0])boltHole(5, length=35);	
+	
+}
+
+
+module xbracket()
+{
+	difference(){
+	    xbracket_body();
+	    xbracket_cuts();
+	}
+}
+
+
 module zmotor_body()
 {
 	translate([20,22.5-5,135]) rotate([270,90,0]) nema_geared_motor();
@@ -102,7 +131,8 @@ module mini_corner()
 	   mini_body();
            mini_cuts();
            }
-   show_rods();
+   show_rods(); 
+   translate([15,30,5]) xbracket();
    
 }
 

@@ -3,6 +3,7 @@ include <MCAD/materials.scad>
 include <MCAD/stepper.scad>
 include <MCAD/motors.scad>
 use <MCAD/shapes.scad>;
+use <pulley.scad>;
 $fn = 32;
 
 
@@ -157,8 +158,17 @@ module nema_mount()
    //nema_cutout();
 }
 
+module pulley_mount()
+{
+   
+        translate([-22.5,0,-21.5]) rotate([90,0,0]) cube([45,45,5]);
+        translate([-22.5,-25,-25]) rotate([0,0,0]) cube([45,25,5]);
+	translate([0,5,0]) rotate([90,0,0]) cylinder(r=18,h=5);
+	translate([-11.25,28,0]) rotate([0,0,-90]) pulley();     
+}
+
 //nema_motor_inverse();
-translate([0,0,40]) rotate([270,0,0]) nema_motor();
-translate([0,0,0]) motor_support(40);
+translate([0,0,40]) rotate([270,0,0]) pulley_mount();
+//translate([0,0,0]) motor_support(40);
 //nema_geared_motor();
 //nema_geared_motor_inverse();
