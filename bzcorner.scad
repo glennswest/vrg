@@ -17,7 +17,7 @@ module zmotor_body()
 {
     translate([0,0,0]) rotate([0,180,0]) mountblock();
     translate([-31,20.6,22]) rotate([90,90,0]) pulley();
-	//translate([-40,-2,39]) rotate([0,90,90]) nema_geared_motor();
+	
     translate([-70,-10,-20]) cube([31,60,20]);
     translate([-41,-10,-20]) cube([41,10,20]);
     translate([-41,40,-20]) cube([41,10,20]);
