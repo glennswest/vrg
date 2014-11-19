@@ -111,8 +111,8 @@ module nema_geared_mount()
    difference(){
       union(){
            translate([-6,-6,0]) rotate([90,0,0]) cube([45,45,7]);
-           translate([-6,-13,-4]) rotate([0,0,0]) cube([45,25,5]);
-           translate([-6,-13,44]) rotate([0,0,0]) cube([45,25,5]);
+           rotate([180,0,0]) translate([-6,6,-4]) cube([45,15,5]);
+           rotate([180,0,0]) translate([-6,6,-44])  cube([45,15,5]);
            }
       translate([0,0,1]) nema_geared_cutout();
       }
@@ -151,7 +151,7 @@ module nema_mount()
    difference(){
       union(){
         translate([-22.5,0,-21.5]) rotate([90,0,0]) cube([45,45,5]);
-        translate([-22.5,-25,-25]) rotate([0,0,0]) cube([45,25,5]);
+        rotate([180,0,0]) translate([-22.5,-10,-28]) cube([45,15,5]);
         }
       translate([0,0,1]) nema_cutout();
       }
@@ -162,13 +162,14 @@ module pulley_mount()
 {
    
         translate([-22.5,0,-21.5]) rotate([90,0,0]) cube([45,45,5]);
-        translate([-22.5,-25,-25]) rotate([0,0,0]) cube([45,25,5]);
+        rotate([180,0,0]) translate([-22.5,-10,-28]) cube([45,15,5]);
 	translate([0,5,0]) rotate([90,0,0]) cylinder(r=18,h=5);
 	translate([-11.25,28,0]) rotate([0,0,-90]) pulley();     
 }
 
+//nema_motor();
 //nema_motor_inverse();
-translate([0,0,40]) rotate([270,0,0]) pulley_mount();
+//translate([0,0,40]) rotate([270,0,0]) pulley_mount();
 //translate([0,0,0]) motor_support(40);
-//nema_geared_motor();
+nema_geared_motor();
 //nema_geared_motor_inverse();
