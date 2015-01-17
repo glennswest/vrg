@@ -49,7 +49,7 @@ module vslot(length=50, sections=1, finish, cutout=0) {
 	}
 
       if (cutout == 1){
-		 translate([0,0,length/2]) box(20 * sections, 20.2, length);
+		 translate([0,0,length/2]) box((20 * sections)+.3, 20.3, length);
           } else {
 	     if(finish)
 		   color(finish) profile();
