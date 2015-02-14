@@ -54,13 +54,16 @@ module mini_body()
 {
 	motor_mounts();	
         translate([11.5,-10.5,20+1]) cube([27,32,30+2]); // X mount vslot
-	
+	translate([11.5-1.5-7.6, -10.5+2+5, 20-2+30]) cube([49.6,25,5]);
+        translate([47.10,0,38]) cube([4.9,21.5,10]);
 }
 
 module mini_cuts()
 {
 	vslot_cuts();
 	translate([25,5,24]) boltHole(5, length=12);
+       
+        translate([25,10,21+28+1]) rotate([0,180,0]) boltHole(5, length=12);
 }
 
 module mini_corner()

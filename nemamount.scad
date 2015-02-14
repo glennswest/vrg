@@ -167,10 +167,10 @@ module pulley_mount()
 	translate([-11.25,28,-3.9]) rotate([0,0,-90]) pulley();     
 }
 
-//nema_motor();
+nema_motor();
 //nema_motor_inverse();
 //translate([0,0,40]) rotate([270,0,0]) pulley_mount();
 //translate([0,0,0]) motor_support(40);
 //nema_geared_motor();
 //nema_geared_motor_inverse();
-pulley_mount();
+//pulley_mount();
