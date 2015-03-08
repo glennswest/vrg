@@ -1,5 +1,5 @@
 
-MBOLT=[[3,5.5],[4,7],[5,8],[6.5,12,5]];
+MBOLT=[[3,5.5],[4,7],[5,9.5],[6.5,12,5]];
 //--------Reference
 // V Type by Shauki Bagdadi
 // Rod Type by Shauki Bagdadi
@@ -11,10 +11,10 @@ MBOLT=[[3,5.5],[4,7],[5,8],[6.5,12,5]];
 // Mauro Manco for wheels
 
 //--------Parameters----------------------
-M=3;       // use Bolt and nut M3=0 M4=1 M5=2 M6=3 
+M=2 ;       // use Bolt and nut M3=0 M4=1 M5=2 M6=3 
 granty=1;  //type of granty 0=square10x10  1=rod  2=Delta support 3=gopro
-Rrod=10;  // radius of rod want use for granty
-Offset=0.7;  //increase if not example if set 0.5 move down hole of 0.5mm
+Rrod=5.1;  // radius of rod want use for granty
+Offset=.5;  //increase if not example if set 0.5 move down hole of 0.5mm
 belt=1;      // If we are using a belt
 //----------------------------------------
 
@@ -24,7 +24,7 @@ difference(){
 hull() {
 translate([23,0,0])cylinder(h = 20, r=10, $fn=36);
 translate([-23,0,0])cylinder(h = 20, r=10, $fn=36);
-translate([0,-42-Offset,0])cylinder(h = 20, r=7, $fn=36);
+translate([0,-37-Offset,0])cylinder(h = 20, r=7, $fn=36);
 }
 
 
@@ -34,11 +34,11 @@ rotate([0,90,0])translate([-0,-21,-45])cylinder(h = 80, r=13.5, $fn=36);
 //-------Wheels holes
 translate([22.5,0,0])cylinder(h = 30, r=MBOLT[M][0]/2, $fn=60);         //Hole
 translate([-22.5,0,0])cylinder(h = 30, r=MBOLT[M][0]/2, $fn=60);        //Hole
-translate([0,-41-Offset,0])cylinder(h = 30, r=MBOLT[M][0]/2, $fn=60); //Hole
+translate([0,-37-Offset,0])cylinder(h = 30, r=MBOLT[M][0]/2, $fn=60); //Hole
 
 translate([22.5,0,10])cylinder(h = 10, r=MBOLT[M][1]/2, $fn=6);         //Hexagon
 translate([-22.5,0,10])cylinder(h = 10, r=MBOLT[M][1]/2, $fn=6);        //Hexagon
-translate([0,-41-Offset,10])cylinder(h = 10, r=MBOLT[M][1]/2, $fn=6); //Hexagon
+translate([0,-37-Offset,10])cylinder(h = 10, r=MBOLT[M][1]/2, $fn=6); //Hexagon
 echo("Belt=", belt );
 //-------Cord regulator
 if (belt == 0){
@@ -62,8 +62,10 @@ translate([-11.5,-15,0])cylinder(h = 15, r=MBOLT[M][1]/2, $fn=6);     //Hexagon
 if (belt==1){
     translate([0,-20,0])cylinder(h = 30, r=MBOLT[M][0]/2, $fn=36);     //Hole
     translate([0,-20,0])cylinder(h = 15, r=MBOLT[M][1]/2, $fn=6);      //Hexagon
-    translate([11.5,-23,0])cube([2,6.5,30]); 
-    translate([-11.5,-23,0])cube([2,6.5,30]);   
+    translate([7.5,-23,0])cube([2,6.5,30]); 
+    translate([-8.5,-23,0])cube([2,6.5,30]); 
+    translate([0,11,10]) rotate([90,0,0]) cylinder(h = 8, r=MBOLT[M][0]/2, $fn=36);    //Hole
+
 }
 //-------Granty type
 

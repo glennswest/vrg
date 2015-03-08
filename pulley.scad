@@ -23,13 +23,13 @@ module pulley_body()
 {
     translate([0,4,0])   pulley_wall(1);
     translate([0,22,0])  pulley_wall(0);
-    %translate([10,2.2,9]) rotate([90,0,180]) boltHole(3,length=32);
+    %translate([10,2.2,9]) rotate([90,0,180]) boltHole(3,length=45);
     %translate([10,27,9]) rotate([90,0,180]) nutHole(3); 
 }
 
 module pulley_cuts()
 {
-    translate([10,-2,9]) rotate([90,0,180]) boltHole(3,length=35);
+    translate([10,-2,9]) rotate([90,0,180]) boltHole(3,length=45);
     translate([10,28,9]) rotate([90,0,180]) nutHole(3);  
     translate([10,30,9]) rotate([90,0,180]) nutHole(3); 
 }
